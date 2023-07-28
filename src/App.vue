@@ -1,47 +1,41 @@
 <script setup>
 import { ref } from 'vue';
 
-const location = ref("Dhaka");
-const changeLocation = (newLocation) => {
-  location.value = newLocation;
-};
-
-const changeButtonColor = ref("bg-sky-400");
+const location = "Dhaka"
+const weather = ref('s') //pc, r, t
 </script>
 
 <template>
-  <section class="container mx-auto flex items-center flex-col">
-    <h1 class="text-center text-2xl py-10">Events & Reactivity in Vue.js</h1>
-    <div class="container mx-auto flex space-x-5 justify-center m-5">
-      <button
-        @click="changeLocation('Dhaka')"
-        class="text-white font-bold py-2 px-4 rounded"
-        :class="changeButtonColor"
-      >
-        Dhaka
-      </button>
-      <button
-        @click="changeLocation('Rajshahi')"
-        class="text-white font-bold py-2 px-4 rounded"
-        :class="changeButtonColor"
-      >
-        Rajshahi
-      </button>
-      <button
-        @click="changeLocation('Khulna')"
-        class="text-white font-bold py-2 px-4 rounded"
-        :class="changeButtonColor"
-      >
-        Khulna
-      </button>
-    </div>
-    <h1 class="text-2xl m-10">Current Location is {{ location }}</h1>
-    <div class="mt-10 space-x-8 flex justify-center">
-      <div @click="changeButtonColor = 'bg-orange-400'" class="flex w-14 h-14 bg-orange-400 cursor-pointer"></div>
-      <div @click="changeButtonColor = 'bg-red-400'" class="flex w-14 h-14 bg-red-400 cursor-pointer"></div>
-      <div @click="changeButtonColor = 'bg-sky-400'" class="flex w-14 h-14 bg-sky-400 cursor-pointer"></div>
-    </div>
-  </section>
+   <section class="container mx-auto flex items-center flex-col">
+        <h1 class="text-center text-2xl py-10">Logic</h1>
+        <div class="w-1/3 bg-gray-200 p-10 flex items-center flex-col space-y-10">
+            <h1 class="text-3xl"> {{ location }} </h1>
+
+            <template v-if=" 's'===weather ">
+              <h2 class="text-2xl">Weather: Sunnay</h2>
+              <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/7911203/weather-icon-md.png" alt="">
+            </template>
+
+            <template v-if=" 'pc'===weather">
+              <h2 class="text-2xl">Weather: Partly Cloudy</h2>
+              <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/7912718/weather-icon-md.png" alt="">
+            </template>
+
+            <template v-if=" 'r'===weather">
+              <h2 class="text-2xl">Weather: Rainy</h2>
+              <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/7913380/weather-icon-md.png" alt="">
+            </template>
+
+            <template v-if=" 't'===weather">
+              <h2 class="text-2xl">Weather: Thunderstorm</h2>
+              <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/7912589/weather-icon-md.png" alt="">
+            </template>
+
+            <input type="text" placeholder="Type Weather" class="p-3" v-model="weather">
+            <p>Ref: Type [s, pc, r, t And See The Update]</p>
+
+        </div>
+    </section>
 </template>
 
 <style scoped></style>
